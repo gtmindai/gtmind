@@ -1,9 +1,23 @@
 import { useEffect, useRef, useState } from "react";
+import analyticsArt from "../../assets/agents/analytics.svg";
+import contentArt from "../../assets/agents/content.svg";
+import geoArt from "../../assets/agents/geo.svg";
+import pipelineArt from "../../assets/agents/pipeline.svg";
+import seoArt from "../../assets/agents/seo.svg";
 import { AGENTS } from "../../data/home";
+import Container from "../ui/Container";
 import { ChevronLeftIcon, ChevronRightIcon } from "../ui/Icons";
 import Reveal from "../ui/Reveal";
 import SectionHeader from "../ui/SectionHeader";
-import AgentArt from "./AgentArt";
+import { SECTION_Y } from "../ui/typography";
+
+const ART = {
+  seo: seoArt,
+  geo: geoArt,
+  content: contentArt,
+  pipeline: pipelineArt,
+  analytics: analyticsArt,
+};
 
 const COUNT = AGENTS.length;
 const INTERVAL = 4800;
@@ -19,7 +33,7 @@ function ArrowButton({ label, onClick, children }) {
       type="button"
       aria-label={label}
       onClick={onClick}
-      className="grid size-[42px] cursor-pointer place-items-center rounded-full border border-line-strong bg-white transition-colors duration-200 hover:border-ink-subtle"
+      className="grid size-11 cursor-pointer place-items-center rounded-full border border-line-strong bg-white transition-colors duration-200 hover:border-ink-subtle sm:size-[42px]"
     >
       {children}
     </button>
@@ -65,8 +79,11 @@ export default function Agents() {
   };
 
   return (
-    <section id="agents" className="overflow-hidden bg-surface-warm bg-[linear-gradient(rgb(26_30_58/0.05)_1px,transparent_1px),linear-gradient(90deg,rgb(26_30_58/0.05)_1px,transparent_1px)] bg-size-[124px_124px] bg-top py-section">
-      <div className="mx-auto max-w-page px-gutter">
+    <section
+      id="agents"
+      className={`overflow-hidden bg-surface-warm bg-[linear-gradient(rgb(26_30_58/0.05)_1px,transparent_1px),linear-gradient(90deg,rgb(26_30_58/0.05)_1px,transparent_1px)] bg-size-[124px_124px] bg-top ${SECTION_Y}`}
+    >
+      <Container>
         <SectionHeader
           eyebrow="Agents"
           title="An agent for every play."
@@ -82,7 +99,7 @@ export default function Agents() {
           onKeyDown={onKeyDown}
           onPointerDown={(e) => (swipeStart.current = e.clientX)}
           onPointerUp={onPointerUp}
-          className="relative mt-[clamp(40px,5vw,64px)] h-[clamp(380px,40vw,520px)] [--step:88%] min-[700px]:[--step:58%] touch-pan-y select-none"
+          className="relative mt-10 h-[400px] touch-pan-y select-none [--step:92%] sm:h-[420px] md:h-[460px] md:[--step:62%] lg:mt-16 lg:h-[520px] lg:[--step:58%]"
         >
           {AGENTS.map((agent, i) => {
             const off = offsetFrom(i, active);
@@ -104,20 +121,20 @@ export default function Agents() {
                   zIndex: 10 - distance,
                   pointerEvents: distance > 1 ? "none" : "auto",
                 }}
-                className={`absolute top-1/2 left-1/2 h-full w-[86%] cursor-pointer overflow-hidden rounded-[32px] text-white shadow-[0_30px_60px_-30px_rgb(26_30_58/0.5)] transition-[transform,opacity,filter] duration-700 ease-out-soft lg:w-[min(760px,74%)] ${
+                className={`absolute top-1/2 left-1/2 h-full w-[88%] cursor-pointer overflow-hidden rounded-3xl text-white shadow-[0_30px_60px_-30px_rgb(26_30_58/0.5)] transition-[transform,opacity,filter] duration-700 ease-out-soft md:w-[80%] lg:w-[min(760px,74%)] lg:rounded-[32px] ${
                   side ? "brightness-[.92] saturate-[.75]" : ""
                 }`}
               >
-                <div
-                  className={`pointer-events-none absolute top-1/2 right-[6%] w-2/5 -translate-y-1/2 transition-opacity duration-500 max-[560px]:hidden ${
+                <img
+                  src={ART[agent.key]}
+                  alt=""
+                  className={`pointer-events-none absolute top-1/2 right-[6%] hidden w-2/5 -translate-y-1/2 transition-opacity duration-500 sm:block ${
                     side ? "opacity-0" : "opacity-20"
                   }`}
-                >
-                  <AgentArt name={agent.key} />
-                </div>
+                />
 
                 <div
-                  className={`absolute inset-0 flex flex-col justify-between p-[clamp(28px,3.4vw,48px)] transition-opacity duration-500 ${
+                  className={`absolute inset-0 flex flex-col justify-between p-6 transition-opacity duration-500 sm:p-8 lg:p-12 ${
                     side ? "opacity-0" : "opacity-100"
                   }`}
                 >
@@ -125,10 +142,10 @@ export default function Agents() {
                     <i className="size-[7px] rounded-full bg-white" />
                     {agent.name}
                   </span>
-                  <h3 className="m-0 max-w-[14ch] font-serif text-[clamp(28px,3.6vw,50px)] leading-[1.08] font-normal tracking-[-0.02em] text-balance">
+                  <h3 className="max-w-[14ch] font-serif text-[30px] leading-[1.08] font-normal tracking-[-0.02em] text-balance sm:text-4xl lg:text-5xl">
                     {agent.headline}
                   </h3>
-                  <div className="flex flex-wrap gap-x-[22px] gap-y-2 text-sm text-white/80">
+                  <div className="flex flex-col gap-2 text-[13px] text-white/80 sm:flex-row sm:flex-wrap sm:gap-x-[22px] sm:text-sm">
                     {agent.meta.map(([label, value]) => (
                       <span key={label}>
                         {label} <b className="font-semibold text-white">{value}</b>
@@ -141,7 +158,7 @@ export default function Agents() {
           })}
         </Reveal>
 
-        <div className="mt-[30px] flex items-center justify-center gap-3.5">
+        <div className="mt-7 flex items-center justify-center gap-3.5 lg:mt-[30px]">
           <ArrowButton label="Previous agent" onClick={() => show(active - 1)}>
             <ChevronLeftIcon />
           </ArrowButton>
@@ -162,7 +179,7 @@ export default function Agents() {
             <ChevronRightIcon />
           </ArrowButton>
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

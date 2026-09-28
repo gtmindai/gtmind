@@ -1,23 +1,30 @@
+import checklistArt from "../../assets/illustrations/checklist.svg";
 import { HERO_NOTES, HERO_RESULT_POINTS, HERO_SETUP_POINTS } from "../../data/home";
 import Button from "../ui/Button";
+import Container from "../ui/Container";
 import Marker from "../ui/Marker";
 import Reveal from "../ui/Reveal";
+import { DISPLAY, EYEBROW, LEDE } from "../ui/typography";
 
 const TILTS = {
-  left: "-rotate-[1.4deg]",
-  right: "rotate-[1.1deg]",
+  left: "md:-rotate-[1.4deg]",
+  right: "md:rotate-[1.1deg]",
 };
+
+const TILE = "flex-none border border-line bg-white shadow-tile";
 
 function TiltCard({ tilt, delay, icon, title, children }) {
   return (
     <Reveal
       as="article"
       delay={delay}
-      className={`group rounded-[28px] border border-line bg-surface p-[clamp(28px,3.2vw,44px)] shadow-card hover:-translate-y-1 hover:rotate-0 hover:shadow-lift ${TILTS[tilt]}`}
+      className={`group rounded-3xl border border-line bg-surface p-6 shadow-card hover:-translate-y-1 hover:shadow-lift sm:p-8 md:hover:rotate-0 lg:rounded-[28px] lg:p-11 ${TILTS[tilt]}`}
     >
-      <div className="flex items-start gap-[18px]">
+      <div className="flex flex-col items-start gap-4 lg:flex-row lg:gap-[18px]">
         {icon}
-        <h3 className="mt-1 text-[clamp(24px,2.5vw,34px)] leading-[1.18] font-semibold tracking-[-0.03em]">{title}</h3>
+        <h3 className="text-2xl leading-[1.18] font-semibold tracking-[-0.03em] sm:text-[28px] lg:mt-1 xl:text-[34px]">
+          {title}
+        </h3>
       </div>
       {children}
     </Reveal>
@@ -26,53 +33,50 @@ function TiltCard({ tilt, delay, icon, title, children }) {
 
 function ChecklistTile() {
   return (
-    <div aria-hidden="true" className="grid size-[76px] flex-none place-items-center rounded-[18px] border border-line bg-white shadow-tile">
-      <svg width="44" height="34" viewBox="0 0 44 34" fill="none">
-        <circle cx="4" cy="5" r="3" fill="#F59E0B" />
-        <rect x="12" y="3.5" width="30" height="3" rx="1.5" fill="#D9DBE2" />
-        <circle cx="4" cy="17" r="3" fill="#2FA86B" />
-        <rect x="12" y="15.5" width="26" height="3" rx="1.5" fill="#D9DBE2" />
-        <circle cx="4" cy="29" r="3" fill="#E0514F" />
-        <rect x="12" y="27.5" width="30" height="3" rx="1.5" fill="#D9DBE2" />
-      </svg>
+    <div aria-hidden="true" className={`${TILE} grid size-16 place-items-center rounded-2xl lg:size-[76px] lg:rounded-[18px]`}>
+      <img src={checklistArt} alt="" className="w-9 lg:w-11" />
     </div>
   );
 }
 
 function RankedTile() {
   return (
-    <div aria-hidden="true" className="w-[76px] flex-none overflow-hidden rounded-[14px] border border-line bg-white text-center shadow-tile">
-      <b className="block bg-success-soft py-1 text-[10px] tracking-[0.16em] text-success-deep">RANKED</b>
-      <span className="block pt-[9px] pb-[11px] text-[22px] font-semibold tracking-[-0.02em]">#1</span>
+    <div aria-hidden="true" className={`${TILE} w-16 overflow-hidden rounded-[14px] text-center lg:w-[76px]`}>
+      <b className="block bg-success-soft py-1 text-[9px] tracking-[0.16em] text-success-deep lg:text-[10px]">RANKED</b>
+      <span className="block pt-2 pb-2.5 text-lg font-semibold tracking-[-0.02em] lg:pt-[9px] lg:pb-[11px] lg:text-[22px]">
+        #1
+      </span>
     </div>
   );
 }
 
 export default function Hero() {
   return (
-    <section className="pt-[clamp(128px,15vw,184px)] pb-[clamp(40px,6vw,72px)]">
-      <div className="mx-auto max-w-page px-gutter">
+    <section className="pt-28 pb-10 sm:pt-36 lg:pt-44 lg:pb-16">
+      <Container>
         <div className="text-center">
-          <Reveal as="p" className="text-eyebrow uppercase text-primary">
+          <Reveal as="p" className={`${EYEBROW} text-primary`}>
             The GTM brain
           </Reveal>
-          <Reveal as="h1" delay={1} className="font-serif text-display text-balance mt-[22px]">
-            Every source. One brain.
-            <br />A number on every play.
+          <Reveal as="h1" delay={1} className={`${DISPLAY} mt-5`}>
+            Every source. One brain. <br className="hidden sm:block" />A number on every play.
           </Reveal>
-          <Reveal as="p" delay={2} className="mx-auto max-w-[60ch] text-lede text-pretty mt-[22px] text-ink-muted">
+          <Reveal as="p" delay={2} className={`${LEDE} mt-5 text-ink-muted`}>
             It reads your CRM, your analytics and your search data together, learns how your company actually wins, and
             hands you a ranked list of plays — each one a specific job, with the revenue attached.
           </Reveal>
-          <Reveal delay={3} className="mt-[34px] flex flex-wrap justify-center gap-3">
-            <Button booking arrow>
+          <Reveal delay={3} className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
+            <Button booking arrow className="w-full sm:w-auto">
               Book a meeting
             </Button>
-            <Button href="#how" variant="line">
+            <Button href="#how" variant="line" className="w-full sm:w-auto">
               See how it works
             </Button>
           </Reveal>
-          <Reveal as="p" className="mt-[18px] flex flex-wrap justify-center gap-x-[18px] gap-y-1.5 text-[13.5px] text-ink-subtle">
+          <Reveal
+            as="p"
+            className="mt-5 flex flex-wrap justify-center gap-x-4 gap-y-1.5 text-[13px] text-ink-subtle sm:gap-x-[18px] sm:text-[13.5px]"
+          >
             {HERO_NOTES.map((note) => (
               <span
                 key={note}
@@ -84,7 +88,7 @@ export default function Hero() {
           </Reveal>
         </div>
 
-        <div className="mx-auto max-w-narrow mt-[clamp(56px,7vw,92px)] grid gap-[clamp(18px,2.4vw,32px)] lg:grid-cols-2">
+        <div className="mx-auto mt-14 grid max-w-narrow gap-5 sm:mt-16 md:grid-cols-2 md:gap-6 lg:mt-24 lg:gap-8">
           <TiltCard
             tilt="left"
             icon={<ChecklistTile />}
@@ -94,11 +98,11 @@ export default function Hero() {
               </>
             }
           >
-            <ul className="mt-[30px] divide-y divide-dashed divide-line-strong">
+            <ul className="mt-6 divide-y divide-dashed divide-line-strong lg:mt-[30px]">
               {HERO_SETUP_POINTS.map((point) => (
                 <li
                   key={point}
-                  className="flex items-center gap-4 py-4 text-[17px] font-medium tracking-[-0.01em] before:size-[9px] before:flex-none before:rounded-full before:bg-accent before:content-[''] max-[560px]:text-[15.5px]"
+                  className="flex items-center gap-4 py-3.5 text-[15.5px] font-medium tracking-[-0.01em] before:size-[9px] before:flex-none before:rounded-full before:bg-accent before:content-[''] sm:py-4 sm:text-[17px]"
                 >
                   {point}
                 </li>
@@ -116,12 +120,12 @@ export default function Hero() {
               </>
             }
           >
-            <div className="mt-7 grid gap-[22px]">
+            <div className="mt-6 grid gap-5 lg:mt-7 lg:gap-[22px]">
               {HERO_RESULT_POINTS.map((point) => (
                 <div
                   key={point.text}
                   style={{ "--c": point.color }}
-                  className="relative pl-[26px] text-[17px] leading-normal font-medium tracking-[-0.01em] before:absolute before:inset-y-[3px] before:left-0 before:w-1 before:rounded before:bg-(--c) before:content-[''] max-[560px]:text-[15.5px]"
+                  className="relative pl-6 text-[15.5px] leading-normal font-medium tracking-[-0.01em] before:absolute before:inset-y-[3px] before:left-0 before:w-1 before:rounded before:bg-(--c) before:content-[''] sm:pl-[26px] sm:text-[17px]"
                 >
                   {point.text}
                 </div>
@@ -129,7 +133,7 @@ export default function Hero() {
             </div>
           </TiltCard>
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

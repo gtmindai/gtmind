@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { NAV_LINKS } from "../../data/home";
 import Button from "../ui/Button";
+import Container from "../ui/Container";
 import { CloseIcon, MenuIcon } from "../ui/Icons";
 import Wordmark from "../ui/Wordmark";
 
@@ -17,10 +18,10 @@ export default function Navbar() {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 border-b bg-white/85 backdrop-blur-md backdrop-saturate-150 transition-colors duration-300 ${
-        scrolled ? "border-line" : "border-transparent"
+        scrolled || menuOpen ? "border-line" : "border-transparent"
       }`}
     >
-      <div className="mx-auto max-w-page px-gutter flex h-[68px] items-center gap-7">
+      <Container className="flex h-16 items-center gap-4 lg:h-[68px] lg:gap-7">
         <Wordmark />
 
         <nav aria-label="Primary" className="ml-3 hidden gap-1 lg:flex">
@@ -49,20 +50,22 @@ export default function Navbar() {
             {menuOpen ? <CloseIcon /> : <MenuIcon />}
           </button>
         </div>
-      </div>
+      </Container>
 
       {menuOpen && (
-        <nav aria-label="Mobile" className="border-t border-line bg-white px-gutter pt-2.5 pb-[18px] lg:hidden">
-          {NAV_LINKS.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              onClick={() => setMenuOpen(false)}
-              className="block border-b border-line px-1 py-3 text-base font-medium"
-            >
-              {link.label}
-            </a>
-          ))}
+        <nav aria-label="Mobile" className="border-t border-line bg-white lg:hidden">
+          <Container className="pt-2 pb-5">
+            {NAV_LINKS.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={() => setMenuOpen(false)}
+                className="block border-b border-line px-1 py-3.5 text-base font-medium last:border-b-0"
+              >
+                {link.label}
+              </a>
+            ))}
+          </Container>
         </nav>
       )}
     </header>

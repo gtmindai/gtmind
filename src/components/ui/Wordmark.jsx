@@ -6,7 +6,7 @@ export default function Wordmark({ className = "" }) {
     <Link
       to="/"
       aria-label={`${SITE.name} home`}
-      className={`font-serif text-[25px] leading-none font-medium tracking-[-0.02em] ${className}`}
+      className={`font-serif text-[23px] leading-none sm:text-[25px] font-medium tracking-[-0.02em] ${className}`}
     >
       {SITE.name}
     </Link>

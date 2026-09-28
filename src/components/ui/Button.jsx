@@ -29,7 +29,7 @@ export default function Button({
   return (
     <a
       {...linkProps}
-      className={`group inline-flex items-center gap-[9px] font-semibold tracking-[-0.005em] whitespace-nowrap transition duration-200 ${VARIANTS[variant]} ${SIZES[size]} ${className}`}
+      className={`group inline-flex items-center justify-center gap-[9px] font-semibold tracking-[-0.005em] whitespace-nowrap transition duration-200 ${VARIANTS[variant]} ${SIZES[size]} ${className}`}
     >
       {children}
       {arrow && (

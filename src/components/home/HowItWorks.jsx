@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { LOOP_STEPS } from "../../data/home";
 import useInView from "../../hooks/useInView";
+import Container from "../ui/Container";
 import Reveal from "../ui/Reveal";
 import SectionHeader from "../ui/SectionHeader";
 
@@ -18,18 +19,18 @@ export default function HowItWorks() {
   };
 
   return (
-    <section id="how" className="pb-section">
-      <div className="mx-auto max-w-page px-gutter">
+    <section id="how" className="pb-20 md:pb-28 lg:pb-36">
+      <Container>
         <SectionHeader
           eyebrow="How it works"
           title="It doesn't stop at the report."
-          lede="Four steps on repeat. Most tools do the first one and hand you a dashboard. Click any step to hold it."
+          lede="Four steps on repeat. Most tools do the first one and hand you a dashboard. Tap any step to hold it."
         />
 
         <Reveal
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
-          className="mx-auto mt-[clamp(44px,5vw,64px)] grid max-w-narrow items-stretch gap-[clamp(24px,3vw,44px)] lg:grid-cols-[0.95fr_1.05fr]"
+          className="mx-auto mt-10 grid max-w-narrow gap-5 sm:gap-6 lg:mt-16 lg:grid-cols-[0.95fr_1.05fr] lg:gap-11"
         >
           <div ref={ref} className="grid content-start gap-2.5">
             {LOOP_STEPS.map((s, i) => {
@@ -40,17 +41,17 @@ export default function HowItWorks() {
                   type="button"
                   aria-pressed={on}
                   onClick={() => goTo(i)}
-                  className={`relative grid cursor-pointer grid-cols-[44px_1fr] gap-x-3.5 gap-y-1 overflow-hidden rounded-[18px] border bg-surface px-[22px] py-5 text-left transition-colors duration-300 max-[560px]:p-[18px] ${
+                  className={`relative grid cursor-pointer grid-cols-[36px_1fr] gap-x-3 gap-y-1 overflow-hidden rounded-[18px] border bg-surface p-[18px] text-left transition-colors duration-300 sm:grid-cols-[44px_1fr] sm:gap-x-3.5 sm:px-[22px] sm:py-5 ${
                     on ? "border-ink" : "border-line hover:border-line-strong"
                   }`}
                 >
                   <span className={`row-span-2 pt-[3px] text-[13px] font-semibold tabular-nums ${on ? "text-primary" : "text-ink-subtle"}`}>
                     0{i + 1}
                   </span>
-                  <span className="text-lg font-semibold tracking-[-0.015em]">{s.title}</span>
+                  <span className="text-[17px] font-semibold tracking-[-0.015em] sm:text-lg">{s.title}</span>
                   <span
-                    className={`overflow-hidden text-[14.5px] leading-normal text-ink-subtle transition-[max-height,opacity] duration-[450ms] ${
-                      on ? "max-h-[90px] opacity-100" : "max-h-0 opacity-0"
+                    className={`overflow-hidden text-sm leading-normal text-ink-subtle transition-[max-height,opacity] duration-[450ms] sm:text-[14.5px] ${
+                      on ? "max-h-[120px] opacity-100" : "max-h-0 opacity-0"
                     }`}
                   >
                     {s.detail}
@@ -68,26 +69,28 @@ export default function HowItWorks() {
             })}
           </div>
 
-          <div aria-live="polite" className="flex flex-col rounded-3xl border border-line bg-surface-soft p-[clamp(24px,3vw,36px)]">
+          <div aria-live="polite" className="flex flex-col rounded-3xl border border-line bg-surface-soft p-5 sm:p-7 lg:p-9">
             <div key={`body-${runId}`} className="animate-fade-up">
               <p className="text-xs font-semibold tracking-[0.14em] text-ink-subtle uppercase">{step.kicker}</p>
-              <h3 className="mt-3 font-serif text-[clamp(28px,2.8vw,38px)] leading-[1.12] font-normal tracking-[-0.015em]">
+              <h3 className="mt-3 font-serif text-[26px] leading-[1.12] font-normal tracking-[-0.015em] sm:text-[32px] lg:text-[38px]">
                 {step.heading}
               </h3>
-              <p className="mt-3.5 max-w-[48ch] text-ink-muted">{step.detail.split(".")[0]}.</p>
+              <p className="mt-3.5 max-w-[48ch] text-[15px] text-ink-muted sm:text-base">{step.detail.split(".")[0]}.</p>
             </div>
 
-            <div className="mt-auto pt-[26px]">
+            <div className="mt-auto pt-6 lg:pt-[26px]">
               <div key={`ev-${runId}`} className="animate-fade-up overflow-hidden rounded-2xl border border-line bg-white">
                 <div className="flex items-center justify-between border-b border-line px-4 py-3 text-xs font-medium text-ink-subtle">
                   <span>{step.evidenceTitle}</span>
-                  <span>Illustrative example</span>
+                  <span className="hidden sm:inline">Illustrative example</span>
                 </div>
                 <div className="divide-y divide-line">
                   {step.evidence.map(([label, value, good]) => (
-                    <div key={label} className="flex justify-between gap-4 px-4 py-3 text-sm">
+                    <div key={label} className="flex justify-between gap-4 px-4 py-3 text-[13px] sm:text-sm">
                       <span className="text-ink-muted">{label}</span>
-                      <span className={`text-right font-semibold tabular-nums ${good ? "text-success" : ""}`}>{value}</span>
+                      <span className={`text-right font-semibold whitespace-nowrap tabular-nums ${good ? "text-success" : ""}`}>
+                        {value}
+                      </span>
                     </div>
                   ))}
                 </div>
@@ -95,7 +98,7 @@ export default function HowItWorks() {
             </div>
           </div>
         </Reveal>
-      </div>
+      </Container>
     </section>
   );
 }

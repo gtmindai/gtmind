@@ -1,4 +1,5 @@
 import { PRINCIPLES } from "../../data/home";
+import Container from "../ui/Container";
 import Reveal from "../ui/Reveal";
 
 const ICONS = {
@@ -27,8 +28,8 @@ const ICONS = {
 
 export default function Principles() {
   return (
-    <section className="pb-[clamp(72px,9vw,120px)]">
-      <div className="mx-auto max-w-page px-gutter">
+    <section className="pb-16 md:pb-24 lg:pb-30">
+      <Container>
         <div className="mx-auto max-w-narrow">
           <Reveal className="mb-5 flex items-center gap-4 after:h-px after:flex-1 after:bg-line after:content-['']">
             <span className="text-xs font-semibold tracking-[0.14em] text-ink-subtle uppercase">
@@ -36,12 +37,12 @@ export default function Principles() {
             </span>
           </Reveal>
 
-          <div className="grid gap-5 lg:grid-cols-3">
+          <div className="grid gap-4 md:grid-cols-3 md:gap-5">
             {PRINCIPLES.map((principle, i) => (
               <Reveal
                 key={principle.title}
                 delay={i}
-                className="group hover:-translate-y-1 rounded-[22px] border border-line bg-surface px-7 pt-7 pb-[30px] hover:border-line-strong"
+                className="group hover:-translate-y-1 rounded-[22px] border border-line bg-surface p-6 lg:px-7 lg:pt-7 lg:pb-[30px] hover:border-line-strong"
               >
                 <div className="grid size-12 place-items-center rounded-[14px] bg-primary/[0.07] text-primary">
                   <svg
@@ -59,13 +60,13 @@ export default function Principles() {
                     {ICONS[principle.icon]}
                   </svg>
                 </div>
-                <h4 className="mt-5 text-lg font-semibold tracking-[-0.015em]">{principle.title}</h4>
+                <h4 className="mt-4 text-[17px] lg:mt-5 lg:text-lg font-semibold tracking-[-0.015em]">{principle.title}</h4>
                 <p className="mt-2 text-[15px] leading-relaxed text-ink-muted">{principle.text}</p>
               </Reveal>
             ))}
           </div>
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

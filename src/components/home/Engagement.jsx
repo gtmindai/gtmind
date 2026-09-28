@@ -1,8 +1,10 @@
 import useInView from "../../hooks/useInView";
 import Button from "../ui/Button";
+import Container from "../ui/Container";
 import { ClockIcon } from "../ui/Icons";
 import Reveal from "../ui/Reveal";
 import SectionHeader from "../ui/SectionHeader";
+import { SECTION_Y } from "../ui/typography";
 import { ApproveVisual, BuildVisual, CalendarVisual } from "./EngagementVisuals";
 
 const STAGES = [
@@ -31,7 +33,7 @@ const NODE_DELAYS = ["0.25s", "1s", "1.75s"];
 
 function Rail({ active }) {
   return (
-    <div aria-hidden="true" className="relative mb-[22px] h-10 max-lg:hidden">
+    <div aria-hidden="true" className="relative mb-[22px] hidden h-10 lg:block">
       <div className="absolute inset-x-[16.6667%] top-1/2 -mt-px h-0.5 rounded-sm bg-line" />
       <div
         className={`absolute inset-x-[16.6667%] top-1/2 -mt-px h-0.5 origin-left rounded-sm bg-primary transition-transform delay-200 duration-[1600ms] ease-in-out-soft ${
@@ -59,53 +61,56 @@ export default function Engagement() {
   const { ref, visible, seen } = useInView({ threshold: 0.25, rootMargin: "0px", once: false });
 
   return (
-    <section className="py-section">
-      <div className="mx-auto max-w-page px-gutter">
+    <section className={SECTION_Y}>
+      <Container>
         <SectionHeader
           eyebrow="Working together"
           title="From the first call to the first play."
           lede="Three steps. Nothing ships until you say yes."
         />
 
-        <div ref={ref} className="mx-auto max-w-narrow relative mt-[clamp(48px,5.5vw,72px)]">
+        <div ref={ref} className="relative mx-auto mt-10 max-w-narrow lg:mt-16">
           <Rail active={seen} />
 
-          <div className="grid gap-5 lg:grid-cols-3">
+          <div className="grid gap-4 lg:grid-cols-3 lg:gap-5">
             {STAGES.map(({ title, text, when, Visual }, i) => (
               <Reveal
                 as="article"
                 key={title}
                 delay={i}
-                className="hover:-translate-y-1 flex flex-col rounded-3xl border border-line bg-surface px-3.5 pt-3.5 pb-[26px] hover:border-line-strong hover:shadow-float"
+                className="flex flex-col gap-5 rounded-3xl border border-line bg-surface p-3.5 pb-6 hover:-translate-y-1 hover:border-line-strong hover:shadow-float sm:grid sm:grid-cols-[minmax(0,260px)_1fr] sm:items-center sm:gap-6 sm:pb-3.5 lg:flex lg:gap-0 lg:pb-[26px]"
               >
                 <div
                   aria-hidden="true"
-                  className="relative h-[168px] overflow-hidden rounded-2xl border border-line bg-surface-soft p-4"
+                  className="relative h-[168px] w-full overflow-hidden rounded-2xl border border-line bg-surface-soft p-4"
                 >
                   <Visual live={visible} />
                 </div>
-                <div className="flex-1 px-3.5 pt-[22px]">
-                  <h3 className="text-xl font-semibold tracking-[-0.02em]">{title}</h3>
-                  <p className="mt-2.5 text-[15.5px] leading-relaxed text-ink-muted">{text}</p>
+                <div className="flex flex-1 flex-col px-3.5 sm:px-0 sm:pr-4 lg:w-full lg:px-3.5 lg:pt-[22px]">
+                  <span className="mb-2 text-xs font-semibold tracking-[0.14em] text-ink-subtle tabular-nums lg:hidden">
+                    0{i + 1}
+                  </span>
+                  <h3 className="text-lg font-semibold tracking-[-0.02em] sm:text-xl">{title}</h3>
+                  <p className="mt-2.5 text-[15px] leading-relaxed text-ink-muted sm:text-[15.5px] lg:flex-1">{text}</p>
+                  <span className="mt-5 inline-flex items-center gap-2 self-start rounded-full bg-primary/[0.07] py-1.5 pr-3 pl-[9px] text-[13px] font-semibold text-primary lg:mt-[22px]">
+                    <ClockIcon size={13} />
+                    {when}
+                  </span>
                 </div>
-                <span className="mx-3.5 mt-[22px] inline-flex items-center gap-2 self-start rounded-full bg-primary/[0.07] py-1.5 pr-3 pl-[9px] text-[13px] font-semibold text-primary">
-                  <ClockIcon size={13} />
-                  {when}
-                </span>
               </Reveal>
             ))}
           </div>
         </div>
 
-        <Reveal className="mt-11 text-center">
-          <Button booking arrow>
+        <Reveal className="mt-10 text-center lg:mt-11">
+          <Button booking arrow className="w-full sm:w-auto">
             Book a meeting
           </Button>
-          <p className="mt-3.5 text-[13.5px] text-ink-subtle">
+          <p className="mt-3.5 text-[13px] text-ink-subtle sm:text-[13.5px]">
             Thirty minutes · No slides · A read of where the money is, either way
           </p>
         </Reveal>
-      </div>
+      </Container>
     </section>
   );
 }
