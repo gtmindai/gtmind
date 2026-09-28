@@ -1,16 +1,17 @@
 import { useEffect, useState } from "react";
-import { NAV_LINKS } from "../../data/home";
+import { NAVBAR_LINKS } from "../../data/home";
 import Button from "../ui/Button";
 import Container from "../ui/Container";
 import { CloseIcon, MenuIcon } from "../ui/Icons";
 import Wordmark from "../ui/Wordmark";
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(() => window.scrollY > 8);
+  const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -26,7 +27,7 @@ export default function Navbar() {
           <Wordmark />
 
           <nav aria-label="Primary" className="mx-auto hidden gap-1 lg:flex">
-            {NAV_LINKS.map((link) => (
+            {NAVBAR_LINKS.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
@@ -58,7 +59,7 @@ export default function Navbar() {
             aria-label="Mobile"
             className="mt-2 animate-fade-up rounded-3xl border border-line bg-white px-4 py-2 shadow-float lg:hidden"
           >
-            {NAV_LINKS.map((link) => (
+            {NAVBAR_LINKS.map((link) => (
               <a
                 key={link.href}
                 href={link.href}

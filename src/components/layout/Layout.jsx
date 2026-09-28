@@ -1,22 +1,23 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { Outlet, useLocation } from "react-router-dom";
-import { SITE } from "../../config/site";
+import { applyHead } from "../../seo/head";
+import { getMeta } from "../../seo/meta";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
 
 export default function Layout() {
   const { pathname } = useLocation();
+  const firstRender = useRef(true);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-
-    let canonical = document.querySelector('link[rel="canonical"]');
-    if (!canonical) {
-      canonical = document.createElement("link");
-      canonical.rel = "canonical";
-      document.head.append(canonical);
+    // A prerendered page already ships the right <head> (scripts/prerender.js);
+    // only client-side navigations need it swapped.
+    if (firstRender.current) {
+      firstRender.current = false;
+      if (document.head.querySelector("[data-head]")) return;
     }
-    canonical.href = `${SITE.url}${pathname}`;
+    window.scrollTo({ top: 0, behavior: "instant" });
+    applyHead(getMeta(pathname));
   }, [pathname]);
 
   return (

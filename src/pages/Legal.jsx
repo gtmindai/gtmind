@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import Container from "../components/ui/Container";
 import { EYEBROW } from "../components/ui/typography";
@@ -44,14 +43,6 @@ function Block({ item }) {
 
 export default function Legal({ slug }) {
   const page = LEGAL_PAGES.find((p) => p.slug === slug);
-
-  useEffect(() => {
-    const previous = document.title;
-    document.title = `${page.title} · ${SITE.name}`;
-    return () => {
-      document.title = previous;
-    };
-  }, [page.title]);
 
   return (
     <section className="pt-28 pb-20 sm:pt-36 lg:pt-40 lg:pb-28">

@@ -75,3 +75,152 @@
     }
   }
 }
+
+/* Long-form article body, rendered from Markdown (src/content/blog). */
+.prose-blog > div {
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  color: var(--color-ink-muted);
+
+  & > * + * {
+    margin-top: 1.25em;
+  }
+
+  & h2 {
+    margin-top: 2.4em;
+    scroll-margin-top: 7rem;
+    font-family: var(--font-serif);
+    font-size: clamp(1.75rem, 1.4rem + 1vw, 2.125rem);
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+    color: var(--color-ink);
+    text-wrap: balance;
+  }
+
+  & h3 {
+    margin-top: 2em;
+    scroll-margin-top: 7rem;
+    font-size: 1.1875rem;
+    font-weight: 600;
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+    color: var(--color-ink);
+  }
+
+  & h2 + *,
+  & h3 + * {
+    margin-top: 0.75em;
+  }
+
+  & strong {
+    font-weight: 600;
+    color: var(--color-ink);
+  }
+
+  & a {
+    font-weight: 500;
+    color: var(--color-primary);
+    text-decoration: underline;
+    text-decoration-color: color-mix(in srgb, var(--color-primary) 35%, transparent);
+    text-underline-offset: 3px;
+    transition: text-decoration-color 0.2s;
+
+    &:hover {
+      text-decoration-color: currentColor;
+    }
+  }
+
+  & ul,
+  & ol {
+    padding-left: 1.4em;
+  }
+
+  & ul {
+    list-style: disc;
+  }
+
+  & ol {
+    list-style: decimal;
+  }
+
+  & li {
+    padding-left: 0.3em;
+
+    & + li {
+      margin-top: 0.5em;
+    }
+
+    &::marker {
+      color: var(--color-ink-subtle);
+    }
+  }
+
+  & blockquote {
+    border-left: 3px solid var(--color-primary);
+    padding: 0.2em 0 0.2em 1.25em;
+    color: var(--color-ink);
+    font-style: italic;
+  }
+
+  & code {
+    border-radius: 6px;
+    background: var(--color-surface-soft);
+    padding: 0.15em 0.4em;
+    font-size: 0.875em;
+    color: var(--color-ink);
+  }
+
+  & pre {
+    overflow-x: auto;
+    border-radius: 16px;
+    background: var(--color-secondary);
+    padding: 1.25em 1.4em;
+    font-size: 0.875rem;
+    line-height: 1.7;
+    color: #e6e8f5;
+
+    & code {
+      background: none;
+      padding: 0;
+      color: inherit;
+    }
+  }
+
+  & hr {
+    border-color: var(--color-line);
+    margin: 2.5em 0;
+  }
+
+  & .table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--color-line);
+    border-radius: 16px;
+  }
+
+  & table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9375rem;
+    line-height: 1.55;
+  }
+
+  & th {
+    background: var(--color-surface-soft);
+    font-weight: 600;
+    color: var(--color-ink);
+    text-align: left;
+  }
+
+  & th,
+  & td {
+    border-bottom: 1px solid var(--color-line);
+    padding: 0.75em 1em;
+    vertical-align: top;
+    min-width: 8rem;
+  }
+
+  & tr:last-child td {
+    border-bottom: 0;
+  }
+}

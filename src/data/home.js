@@ -7,6 +7,8 @@ export const NAV_LINKS = [
   { label: "FAQ", href: "/#faq" },
 ];
 
+export const NAVBAR_LINKS = [...NAV_LINKS, { label: "Blog", href: "/blog" }];
+
 export const HERO_NOTES = ["Thirty minutes", "Read-only access", "No slides"];
 
 export const HERO_SETUP_POINTS = [
@@ -207,7 +209,7 @@ export const FOOTER_COLUMNS = [
     links: [
       { label: "About", href: "#" },
       { label: "Careers", href: "#" },
-      { label: "Blog", href: "#", soon: true },
+      { label: "Blog", to: "/blog" },
       { label: "Contact", href: `mailto:${SITE.email}` },
     ],
   },
