@@ -28,6 +28,7 @@ backend/
     ├── config/env.js         reads + validates env vars with Zod; exits if invalid
     ├── db/
     │   ├── client.js         pg pool + Drizzle instance
+    │   ├── migrate.js        applies drizzle/ migrations (no dev tools needed)
     │   └── schema.js         every table, in one place
     ├── lib/
     │   ├── logger.js         pino (JSON logs)
@@ -57,7 +58,7 @@ Routes never talk to the database directly; services never see `req`/`res`. That
 | `npm run dev` | Start with `--watch`, loading `.env` |
 | `npm start` | Production start (env comes from the host) |
 | `npm run db:generate` | After editing `schema.js`: write a new SQL migration into `drizzle/` |
-| `npm run db:migrate` | Apply pending migrations to `DATABASE_URL` |
+| `npm run db:migrate` | Apply pending migrations to `DATABASE_URL` (runs `src/db/migrate.js`; also Railway's pre-deploy step) |
 | `npm run db:studio` | Browse the database in a local web UI |
 
 Changing the schema is always: edit `schema.js` → `db:generate` → review the SQL → commit → `db:migrate`.
