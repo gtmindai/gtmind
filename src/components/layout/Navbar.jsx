@@ -19,7 +19,7 @@ export default function Navbar() {
     <header className="fixed inset-x-0 top-0 z-50 pt-3 lg:pt-4">
       <Container>
         <div
-          className={`flex h-14 items-center gap-4 rounded-full border bg-white/80 pr-2 pl-5 backdrop-blur-md backdrop-saturate-150 transition-[border-color,box-shadow] duration-300 lg:h-[60px] lg:gap-6 lg:pl-6 ${
+          className={`flex h-14 items-center gap-4 rounded-full border bg-white/80 pr-2 pl-5 backdrop-blur-md backdrop-saturate-150 transition-[border-color,box-shadow] duration-300 lg:h-15 lg:gap-6 lg:pl-6 ${
             scrolled || menuOpen ? "border-line shadow-float" : "border-line/70"
           }`}
         >

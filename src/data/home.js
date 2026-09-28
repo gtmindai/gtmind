@@ -1,3 +1,5 @@
+import { SITE } from "../config/site";
+
 export const NAV_LINKS = [
   { label: "How it works", href: "/#how" },
   { label: "Sources", href: "/#sources" },
@@ -206,16 +208,16 @@ export const FOOTER_COLUMNS = [
       { label: "About", href: "#" },
       { label: "Careers", href: "#" },
       { label: "Blog", href: "#", soon: true },
-      { label: "Contact", booking: true },
+      { label: "Contact", href: `mailto:${SITE.email}` },
     ],
   },
   {
     title: "Legal",
     links: [
-      { label: "Privacy policy", href: "#" },
-      { label: "Terms of service", href: "#" },
-      { label: "Data handling", href: "#" },
-      { label: "Cookie settings", href: "#" },
+      { label: "Privacy policy", to: "/privacy" },
+      { label: "Terms of service", to: "/terms" },
+      { label: "Data handling", to: "/data-handling" },
+      { label: "Cookie settings", to: "/cookies" },
     ],
   },
 ];

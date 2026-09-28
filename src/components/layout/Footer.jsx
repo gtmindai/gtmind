@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { SITE } from "../../config/site";
 import { AGENTS, FOOTER_COLUMNS, NAV_LINKS } from "../../data/home";
 import Button from "../ui/Button";
@@ -11,7 +12,8 @@ const SOCIALS = [
   { label: "YouTube", href: "#", Icon: YouTubeIcon },
 ];
 
-const linkClass = "cursor-pointer text-left text-sm text-ink-muted transition-colors duration-200 hover:text-ink sm:text-[14.5px]";
+const linkClass =
+  "cursor-pointer text-left text-sm text-ink-muted transition-colors duration-200 hover:text-ink sm:text-[14.5px]";
 
 function FooterColumn({ title, children }) {
   return (
@@ -41,13 +43,6 @@ export default function Footer() {
             <Button booking size="sm" arrow className="mt-6">
               Book a meeting
             </Button>
-            <div className="mt-5 grid gap-2 text-[13px] text-ink-subtle sm:text-[13.5px]">
-              <span className="inline-flex items-center gap-[9px]">
-                <i className="size-1.5 rounded-full bg-success shadow-[0_0_0_3px_rgb(47_168_107/0.14)]" />
-                Taking new teams this quarter
-              </span>
-              <span>Read-only · Reversible by design</span>
-            </div>
           </div>
 
           <FooterColumn title="Product">
@@ -74,18 +69,27 @@ export default function Footer() {
             <FooterColumn key={column.title} title={column.title}>
               {column.links.map((link) => (
                 <li key={link.label}>
-                  <a
-                    href={link.booking ? SITE.calUrl : link.href}
-                    {...(link.booking && { target: "_blank", rel: "noopener noreferrer" })}
-                    className={linkClass}
-                  >
-                    {link.label}
-                    {link.soon && (
-                      <span className="ml-2 rounded-full border border-line px-[7px] py-px align-[1px] text-[10.5px] font-semibold tracking-[0.06em] text-ink-subtle uppercase">
-                        Soon
-                      </span>
-                    )}
-                  </a>
+                  {link.to ? (
+                    <Link to={link.to} className={linkClass}>
+                      {link.label}
+                    </Link>
+                  ) : (
+                    <a
+                      href={link.booking ? SITE.calUrl : link.href}
+                      {...(link.booking && {
+                        target: "_blank",
+                        rel: "noopener noreferrer",
+                      })}
+                      className={linkClass}
+                    >
+                      {link.label}
+                      {link.soon && (
+                        <span className="ml-2 rounded-full border border-line px-1.75 py-px align-[1px] text-[10.5px] font-semibold tracking-[0.06em] text-ink-subtle uppercase">
+                          Soon
+                        </span>
+                      )}
+                    </a>
+                  )}
                 </li>
               ))}
             </FooterColumn>
@@ -101,7 +105,7 @@ export default function Footer() {
       </div>
 
       <Container>
-        <div className="flex flex-col items-start gap-4 border-t border-line pt-5 pb-7 text-[13px] text-ink-subtle sm:flex-row sm:flex-wrap sm:items-center sm:justify-between sm:gap-x-6">
+        <div className="flex flex-col items-start gap-4 pt-5 pb-7 text-[13px] text-ink-subtle sm:flex-row sm:flex-wrap sm:items-center sm:justify-between sm:gap-x-6">
           <span>
             © {new Date().getFullYear()} {SITE.name} · {SITE.domain}. All rights reserved.
           </span>
