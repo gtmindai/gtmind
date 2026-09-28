@@ -25,10 +25,12 @@ if (!template.includes("<!--app-head-->") || !template.includes('<div id="root">
   throw new Error("dist/index.html is missing the <!--app-head--> or root placeholder");
 }
 
+// Function replacers, so "$&", "$'" or "$$" in page content are inserted
+// literally instead of being read as replacement patterns.
 function page(url) {
   return template
-    .replace("<!--app-head-->", renderHead(getMeta(url)))
-    .replace('<div id="root"></div>', `<div id="root">${render(url)}</div>`);
+    .replace("<!--app-head-->", () => renderHead(getMeta(url)))
+    .replace('<div id="root"></div>', () => `<div id="root">${render(url)}</div>`);
 }
 
 async function write(file, contents) {

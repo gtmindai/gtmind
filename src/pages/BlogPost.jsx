@@ -59,7 +59,7 @@ function PostContent({ post, onArticleClick }) {
       </div>
 
       <aside className="hidden lg:block">
-        <Toc items={toc} />
+        <Toc items={toc} hasFaq={faq?.length > 0} />
       </aside>
     </div>
   );
@@ -87,7 +87,7 @@ function Breadcrumbs({ post }) {
   );
 }
 
-function Toc({ items }) {
+function Toc({ items, hasFaq }) {
   if (items.length < 3) return null;
   return (
     <nav aria-label="On this page" className="lg:sticky lg:top-28">
@@ -103,14 +103,16 @@ function Toc({ items }) {
             </a>
           </li>
         ))}
-        <li>
-          <a
-            href="#faq"
-            className="-ml-px block border-l border-transparent pl-4 text-[13.5px] leading-snug text-ink-muted transition-colors hover:border-ink hover:text-ink"
-          >
-            FAQ
-          </a>
-        </li>
+        {hasFaq && (
+          <li>
+            <a
+              href="#faq"
+              className="-ml-px block border-l border-transparent pl-4 text-[13.5px] leading-snug text-ink-muted transition-colors hover:border-ink hover:text-ink"
+            >
+              FAQ
+            </a>
+          </li>
+        )}
       </ol>
     </nav>
   );

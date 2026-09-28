@@ -2,7 +2,7 @@ import { SITE } from "../../config/site";
 import { ArrowRightIcon } from "./Icons";
 
 const VARIANTS = {
-  dark: "bg-secondary text-white shadow-[inset_0_1px_0_rgb(255_255_255/0.08),0_8px_20px_-10px_rgb(27_31_59/0.6)] hover:-translate-y-px hover:bg-secondary-hover",
+  dark: "bg-secondary text-white shadow-[inset_0_1px_0_rgb(255_255_255/0.08),0_8px_20px_-10px_rgb(17_17_19/0.6)] hover:-translate-y-px hover:bg-secondary-hover",
   line: "border border-line-strong bg-surface text-ink hover:border-ink-subtle",
   white: "bg-white text-secondary hover:-translate-y-px",
   ghost: "border border-white/20 text-white hover:border-white/50",

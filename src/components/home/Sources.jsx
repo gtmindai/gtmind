@@ -59,7 +59,7 @@ export default function Sources() {
   return (
     <section
       id="sources"
-      className={`bg-surface-soft bg-[repeating-linear-gradient(135deg,rgb(26_30_58/0.028)_0_1px,transparent_1px_11px)] ${SECTION_Y}`}
+      className={`bg-surface-soft bg-[repeating-linear-gradient(135deg,rgb(17_17_19/0.028)_0_1px,transparent_1px_11px)] ${SECTION_Y}`}
     >
       <Container>
         <SectionHeader

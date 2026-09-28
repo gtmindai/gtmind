@@ -49,7 +49,7 @@ export function compileMarkdown(source, id) {
         const text = this.parser.parseInline(tokens);
         const external = /^https?:\/\//.test(href) && !href.includes("gtmind.in");
         const attrs = [`href="${href}"`];
-        if (title) attrs.push(`title="${title}"`);
+        if (title) attrs.push(`title="${title.replace(/&/g, "&amp;").replace(/"/g, "&quot;")}"`);
         if (external) attrs.push('target="_blank"', 'rel="noopener"');
         return `<a ${attrs.join(" ")}>${text}</a>`;
       },

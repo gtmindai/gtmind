@@ -7,20 +7,20 @@
   --color-primary: #3d4ed8;
   --color-primary-light: #5a6aea;
   --color-primary-tint: #9aa6ff;
-  --color-secondary: #1b1f3b;
-  --color-secondary-hover: #2a2f55;
+  --color-secondary: #111113;
+  --color-secondary-hover: #2a2a2e;
   --color-accent: #7b5ce6;
 
-  --color-ink: #1a1e3a;
-  --color-ink-muted: #4e5468;
-  --color-ink-subtle: #8a8fa0;
+  --color-ink: #18181b;
+  --color-ink-muted: #52525b;
+  --color-ink-subtle: #8b8b93;
 
   --color-surface: #ffffff;
-  --color-surface-soft: #f4f5f7;
+  --color-surface-soft: #f4f4f5;
   --color-surface-warm: #f6f6f3;
 
-  --color-line: #e6e7ec;
-  --color-line-strong: #d9dbe2;
+  --color-line: #e7e7e9;
+  --color-line-strong: #d9d9dd;
 
   --color-info: #4a86f0;
   --color-success: #2fa86b;
@@ -33,12 +33,12 @@
   --container-page: 1200px;
   --container-narrow: 1040px;
 
-  --shadow-card: 0 1px 2px rgb(26 30 58 / 0.04), 0 12px 32px -12px rgb(26 30 58 / 0.14);
-  --shadow-lift: 0 1px 2px rgb(26 30 58 / 0.04), 0 22px 48px -16px rgb(26 30 58 / 0.2);
-  --shadow-float: 0 24px 50px -28px rgb(26 30 58 / 0.28);
-  --shadow-tile: 0 8px 20px -10px rgb(26 30 58 / 0.2);
-  --shadow-logo: 0 10px 24px -14px rgb(26 30 58 / 0.28);
-  --shadow-logo-hover: 0 18px 34px -16px rgb(26 30 58 / 0.35);
+  --shadow-card: 0 1px 2px rgb(17 17 19 / 0.04), 0 12px 32px -12px rgb(17 17 19 / 0.14);
+  --shadow-lift: 0 1px 2px rgb(17 17 19 / 0.04), 0 22px 48px -16px rgb(17 17 19 / 0.2);
+  --shadow-float: 0 24px 50px -28px rgb(17 17 19 / 0.28);
+  --shadow-tile: 0 8px 20px -10px rgb(17 17 19 / 0.2);
+  --shadow-logo: 0 10px 24px -14px rgb(17 17 19 / 0.28);
+  --shadow-logo-hover: 0 18px 34px -16px rgb(17 17 19 / 0.35);
 
   --ease-out-soft: cubic-bezier(0.22, 0.61, 0.36, 1);
   --ease-in-out-soft: cubic-bezier(0.65, 0, 0.35, 1);
@@ -178,7 +178,7 @@
     padding: 1.25em 1.4em;
     font-size: 0.875rem;
     line-height: 1.7;
-    color: #e6e8f5;
+    color: #e7e7e9;
 
     & code {
       background: none;

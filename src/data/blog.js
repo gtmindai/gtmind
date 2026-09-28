@@ -32,8 +32,7 @@ const pending = new Map();
 const loaded = new Map();
 
 // A cached promise of the post's article (body parts, FAQ, table of
-// contents), for React's `use`. Files are
-// named after their slug.
+// contents), for React's `use`. Files are named after their slug.
 export function loadBody(slug) {
   if (!pending.has(slug)) {
     const load = bodies[`../content/blog/${slug}.md`]().then(({ parts, faq, toc }) => {

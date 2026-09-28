@@ -15,11 +15,12 @@ const fontFiles = (await readdir(fontDir)).filter((f) => f.endsWith(".ttf")).map
 const W = 1200;
 const H = 630;
 
+// Every cover shares the site's near-black; the category sets the accent.
 const THEMES = {
-  "GTM & RevOps": { bg: "#1B1F3B", accent: "#9AA6FF", soft: "#2A2F55" },
-  "AI agents": { bg: "#2E3A66", accent: "#A9B8FF", soft: "#3B4878" },
-  "AI search": { bg: "#1F4E4A", accent: "#8FE0C8", soft: "#2A5F5A" },
-  "Revenue measurement": { bg: "#4A3558", accent: "#E4B8FF", soft: "#5A446A" },
+  "GTM & RevOps": { bg: "#111113", accent: "#9AA6FF", soft: "#232327" },
+  "AI agents": { bg: "#111113", accent: "#F2C27B", soft: "#232327" },
+  "AI search": { bg: "#111113", accent: "#8FE0C8", soft: "#232327" },
+  "Revenue measurement": { bg: "#111113", accent: "#E4B8FF", soft: "#232327" },
 };
 
 const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -225,22 +226,36 @@ function coverSvg(post) {
 </svg>`;
 }
 
+// The site-wide social image: wordmark, the homepage promise, the address.
 function defaultSvg() {
-  const t = THEMES["GTM & RevOps"];
+  const black = "#111113";
+  const muted = "#8B8B93";
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">
-  <rect width="${W}" height="${H}" fill="${t.bg}"/>
-  ${grid("#ffffff")}
-  <circle cx="1010" cy="120" r="340" fill="${t.accent}" fill-opacity="0.06"/>
-  <text x="72" y="92" font-family="Geist" font-weight="600" font-size="19" letter-spacing="3.4" fill="${t.accent}">THE GTM BRAIN</text>
-  <text x="70" y="300" font-family="Newsreader 72pt" font-size="140" letter-spacing="-4" fill="#ffffff">gtmind</text>
-  <text x="74" y="385" font-family="Geist" font-weight="500" font-size="30" fill="#ffffff" fill-opacity="0.72">One model of your CRM, analytics and search data —</text>
-  <text x="74" y="428" font-family="Geist" font-weight="500" font-size="30" fill="#ffffff" fill-opacity="0.72">and the agents that act on it.</text>
-  <text x="72" y="566" font-family="Geist" font-weight="500" font-size="18" fill="#ffffff" fill-opacity="0.55">www.gtmind.in</text>
-  <g transform="translate(720 105)">${MOTIFS["gtm-engineer"](t)}</g>
+  <defs>
+    <radialGradient id="light" cx="0.95" cy="0" r="0.9">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.09"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="${W}" height="${H}" fill="${black}"/>
+  <rect width="${W}" height="${H}" fill="url(#light)"/>
+
+  <rect x="80" y="80" width="46" height="46" rx="12" fill="#ffffff"/>
+  <text x="103" y="113" text-anchor="middle" font-family="Newsreader 72pt" font-size="32" fill="${black}">g</text>
+  <text x="142" y="115" font-family="Newsreader 72pt" font-weight="500" font-size="36" letter-spacing="-0.6" fill="#ffffff">gtmind</text>
+
+  <text font-family="Newsreader 72pt" font-size="76" letter-spacing="-2" fill="#ffffff">
+    <tspan x="76" y="298">Every source. One brain.</tspan>
+    <tspan x="76" y="382" fill="${muted}">A number on every play.</tspan>
+  </text>
+
+  <rect x="80" y="506" width="1040" height="1" fill="#ffffff" fill-opacity="0.14"/>
+  <text x="80" y="552" font-family="Geist" font-weight="500" font-size="20" fill="#ffffff" fill-opacity="0.85">The GTM brain for B2B teams</text>
+  <text x="1120" y="552" text-anchor="end" font-family="Geist" font-weight="500" font-size="20" fill="${muted}">gtmind.in</text>
 </svg>`;
 }
 
-const logoSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 32 32"><rect width="32" height="32" rx="8" fill="#1B1F3B"/><text x="16" y="23" text-anchor="middle" font-family="Newsreader 72pt" font-size="22" fill="#fff">g</text></svg>`;
+const logoSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 32 32"><rect width="32" height="32" rx="8" fill="#111113"/><text x="16" y="23" text-anchor="middle" font-family="Newsreader 72pt" font-size="22" fill="#fff">g</text></svg>`;
 
 function png(svg, width) {
   return new Resvg(svg, {

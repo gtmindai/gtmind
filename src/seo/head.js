@@ -11,13 +11,14 @@ function tags(meta) {
   const image = abs(meta.image.url);
   const list = [
     ["meta", { name: "description", content: meta.description }],
-    ["link", { rel: "canonical", href: url }],
+    // A noindexed page (the 404) has no URL worth pointing crawlers at.
+    ...(meta.noindex ? [] : [["link", { rel: "canonical", href: url }]]),
     ["meta", { name: "robots", content: meta.noindex ? "noindex, follow" : "index, follow, max-image-preview:large" }],
     ["meta", { property: "og:site_name", content: SITE.name }],
     ["meta", { property: "og:type", content: meta.type }],
     ["meta", { property: "og:title", content: meta.title }],
     ["meta", { property: "og:description", content: meta.description }],
-    ["meta", { property: "og:url", content: url }],
+    ...(meta.noindex ? [] : [["meta", { property: "og:url", content: url }]]),
     ["meta", { property: "og:image", content: image }],
     ["meta", { property: "og:image:width", content: "1200" }],
     ["meta", { property: "og:image:height", content: "630" }],

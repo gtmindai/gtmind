@@ -81,7 +81,7 @@ export default function Agents() {
   return (
     <section
       id="agents"
-      className={`overflow-hidden bg-surface-warm bg-[linear-gradient(rgb(26_30_58/0.05)_1px,transparent_1px),linear-gradient(90deg,rgb(26_30_58/0.05)_1px,transparent_1px)] bg-size-[124px_124px] bg-top ${SECTION_Y}`}
+      className={`overflow-hidden bg-surface-warm bg-[linear-gradient(rgb(17_17_19/0.05)_1px,transparent_1px),linear-gradient(90deg,rgb(17_17_19/0.05)_1px,transparent_1px)] bg-size-[124px_124px] bg-top ${SECTION_Y}`}
     >
       <Container>
         <SectionHeader
@@ -121,7 +121,7 @@ export default function Agents() {
                   zIndex: 10 - distance,
                   pointerEvents: distance > 1 ? "none" : "auto",
                 }}
-                className={`absolute top-1/2 left-1/2 h-full w-[88%] cursor-pointer overflow-hidden rounded-3xl text-white shadow-[0_30px_60px_-30px_rgb(26_30_58/0.5)] transition-[transform,opacity,filter] duration-700 ease-out-soft md:w-[80%] lg:w-[min(760px,74%)] lg:rounded-[32px] ${
+                className={`absolute top-1/2 left-1/2 h-full w-[88%] cursor-pointer overflow-hidden rounded-3xl text-white shadow-[0_30px_60px_-30px_rgb(17_17_19/0.5)] transition-[transform,opacity,filter] duration-700 ease-out-soft md:w-[80%] lg:w-[min(760px,74%)] lg:rounded-[32px] ${
                   side ? "brightness-[.92] saturate-[.75]" : ""
                 }`}
               >

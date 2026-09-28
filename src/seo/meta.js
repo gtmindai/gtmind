@@ -12,7 +12,7 @@ const HOME_DESCRIPTION =
 // Bump when the homepage or legal pages change, so the sitemap's lastmod stays honest.
 const SITE_UPDATED = "2026-09-28";
 
-const DEFAULT_IMAGE = { url: "/og/default.png", alt: "gtmind — The GTM brain for B2B teams" };
+const DEFAULT_IMAGE = { url: "/og/default.png", alt: HOME_TITLE };
 
 const abs = (path) => `${SITE.url}${path}`;
 
