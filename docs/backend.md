@@ -119,3 +119,16 @@ Rules for every job: **idempotent** (safe to run twice), **scoped to one organiz
 | `HUBSPOT_CLIENT_ID`, `HUBSPOT_CLIENT_SECRET` | phase 3 | CRM access |
 
 New variables must be added to `src/config/env.js` **and** `.env.example` together, so the app refuses to start with a missing value instead of failing later.
+
+## Deploying on Railway
+
+Build and deploy settings live in [`backend/railway.json`](../backend/railway.json), so they are versioned with the code: pre-deploy migrations, start command, health check, restart policy, and redeploying only when `backend/` changes.
+
+Two settings can't live in that file and are set once in the service's **Settings**:
+
+| Setting | Value |
+|---|---|
+| Source → Root Directory | `backend` |
+| Config-as-code → Railway Config File | `/backend/railway.json` |
+
+Variables (**Variables** tab): `DATABASE_URL=${{Postgres.DATABASE_URL}}`, `NODE_ENV=production`, `CORS_ORIGINS=https://www.gtmind.in`. `PORT` is set by Railway.
