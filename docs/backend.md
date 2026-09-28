@@ -122,13 +122,16 @@ New variables must be added to `src/config/env.js` **and** `.env.example` togeth
 
 ## Deploying on Railway
 
-Build and deploy settings live in [`backend/railway.json`](../backend/railway.json), so they are versioned with the code: pre-deploy migrations, start command, health check, restart policy, and redeploying only when `backend/` changes.
-
-Two settings can't live in that file and are set once in the service's **Settings**:
+Set once in the service's **Settings**, then click **Deploy** in the "Apply changes" bar. Unapplied changes are discarded.
 
 | Setting | Value |
 |---|---|
 | Source → Root Directory | `backend` |
-| Config-as-code → Railway Config File | `/backend/railway.json` |
+| Deploy → Pre-deploy Command | `npm run db:migrate` |
+| Deploy → Custom Start Command | `npm start` |
+| Deploy → Healthcheck Path | `/health` |
+| Build → Watch Paths | `/backend/**` |
 
 Variables (**Variables** tab): `DATABASE_URL=${{Postgres.DATABASE_URL}}`, `NODE_ENV=production`, `CORS_ORIGINS=https://www.gtmind.in`. `PORT` is set by Railway.
+
+Railway's config-as-code file (`railway.json`) is deprecated and can't be enabled on new services, so these settings live in the dashboard.
