@@ -56,7 +56,7 @@ export default function Legal({ slug }) {
   return (
     <section className="pt-28 pb-20 sm:pt-36 lg:pt-40 lg:pb-28">
       <Container>
-        <header className="max-w-[720px]">
+        <header className="max-w-180">
           <p className={`${EYEBROW} text-primary`}>Legal</p>
           <h1 className="mt-4 font-serif text-[40px] leading-[1.08] font-normal tracking-[-0.018em] text-balance sm:text-[48px] lg:text-[56px]">
             {page.title}
