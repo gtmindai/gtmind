@@ -16,58 +16,61 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 border-b bg-white/85 backdrop-blur-md backdrop-saturate-150 transition-colors duration-300 ${
-        scrolled || menuOpen ? "border-line" : "border-transparent"
-      }`}
-    >
-      <Container className="flex h-16 items-center gap-4 lg:h-[68px] lg:gap-7">
-        <Wordmark />
+    <header className="fixed inset-x-0 top-0 z-50 pt-3 lg:pt-4">
+      <Container>
+        <div
+          className={`flex h-14 items-center gap-4 rounded-full border bg-white/80 pr-2 pl-5 backdrop-blur-md backdrop-saturate-150 transition-[border-color,box-shadow] duration-300 lg:h-[60px] lg:gap-6 lg:pl-6 ${
+            scrolled || menuOpen ? "border-line shadow-float" : "border-line/70"
+          }`}
+        >
+          <Wordmark />
 
-        <nav aria-label="Primary" className="ml-3 hidden gap-1 lg:flex">
-          {NAV_LINKS.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="rounded-lg px-3 py-2 text-[14.5px] font-medium text-ink-muted transition-colors duration-200 hover:bg-surface-soft hover:text-ink"
+          <nav aria-label="Primary" className="mx-auto hidden gap-1 lg:flex">
+            {NAV_LINKS.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="rounded-full px-4 py-2 text-[14.5px] font-medium text-ink-muted transition-colors duration-200 hover:bg-surface-soft hover:text-ink"
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
+
+          <div className="ml-auto flex items-center gap-2 lg:ml-0">
+            <Button booking size="sm" className="rounded-full!">
+              Book a meeting
+            </Button>
+            <button
+              type="button"
+              aria-label={menuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={menuOpen}
+              onClick={() => setMenuOpen((open) => !open)}
+              className="grid size-10 cursor-pointer place-items-center rounded-full border border-line-strong lg:hidden"
             >
-              {link.label}
-            </a>
-          ))}
-        </nav>
-
-        <div className="ml-auto flex items-center gap-2.5">
-          <Button booking size="sm">
-            Book a meeting
-          </Button>
-          <button
-            type="button"
-            aria-label={menuOpen ? "Close menu" : "Open menu"}
-            aria-expanded={menuOpen}
-            onClick={() => setMenuOpen((open) => !open)}
-            className="grid size-10 cursor-pointer place-items-center rounded-[10px] border border-line-strong lg:hidden"
-          >
-            {menuOpen ? <CloseIcon /> : <MenuIcon />}
-          </button>
+              {menuOpen ? <CloseIcon /> : <MenuIcon />}
+            </button>
+          </div>
         </div>
-      </Container>
 
-      {menuOpen && (
-        <nav aria-label="Mobile" className="border-t border-line bg-white lg:hidden">
-          <Container className="pt-2 pb-5">
+        {menuOpen && (
+          <nav
+            aria-label="Mobile"
+            className="mt-2 animate-fade-up rounded-3xl border border-line bg-white px-4 py-2 shadow-float lg:hidden"
+          >
             {NAV_LINKS.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
                 onClick={() => setMenuOpen(false)}
-                className="block border-b border-line px-1 py-3.5 text-base font-medium last:border-b-0"
+                className="block border-b border-line px-2 py-3.5 text-base font-medium last:border-b-0"
               >
                 {link.label}
               </a>
             ))}
-          </Container>
-        </nav>
-      )}
+          </nav>
+        )}
+      </Container>
     </header>
   );
 }
