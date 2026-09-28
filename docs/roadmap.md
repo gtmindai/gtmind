@@ -19,7 +19,7 @@ flowchart LR
 - [x] Zod-validated environment variables
 - [x] PostgreSQL via Drizzle; first migration with accounts, connections and sync runs
 - [x] `/health` and `/health/ready`
-- [ ] Deploy API + Postgres to Railway, point `api.gtmind.in` at it
+- [x] Deploy API + Postgres to Railway, point `api.gtmind.in` at it
 
 ## Phase 1 — Leads and sign-in
 
